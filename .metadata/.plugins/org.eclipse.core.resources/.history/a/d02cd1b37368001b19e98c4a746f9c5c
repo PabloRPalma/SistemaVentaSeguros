@@ -1,0 +1,114 @@
+package app.cotizador.rest.dto;
+
+import java.io.Serializable;
+import app.cotizador.model.Comuna;
+import javax.persistence.EntityManager;
+import java.util.Set;
+import java.util.HashSet;
+import app.cotizador.rest.dto.NestedDatosAseguradoDTO;
+import app.cotizador.model.DatosAsegurado;
+import java.util.Iterator;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class ComunaDTO implements Serializable {
+
+	private int codigo;
+	private String nombre;
+	
+	public ComunaDTO() {
+	}
+
+	public ComunaDTO(final Comuna entity) {
+		if (entity != null) {
+			this.codigo = entity.getCodigo();
+			this.nombre = entity.getNombre();
+			I
+		}
+	}
+
+	public Comuna fromDTO(Comuna entity, EntityManager em) {
+		if (entity == null) {
+			entity = new Comuna();
+		}
+		entity.setNombre(this.nombre);
+		Iterator<DatosAsegurado> iterDatosAsegurados = entity
+				.getDatosAsegurados().iterator();
+		while (iterDatosAsegurados.hasNext()) {
+			boolean found = false;
+			DatosAsegurado datosAsegurado = iterDatosAsegurados.next();
+			Iterator<NestedDatosAseguradoDTO> iterDtoDatosAsegurados = this
+					.getDatosAsegurados().iterator();
+			while (iterDtoDatosAsegurados.hasNext()) {
+				NestedDatosAseguradoDTO dtoDatosAsegurado = iterDtoDatosAsegurados
+						.next();
+				if (((Long) dtoDatosAsegurado.getValorizacionId())
+						.equals((Long) datosAsegurado.getValorizacionId())) {
+					found = true;
+					break;
+				}
+			}
+			if (found == false) {
+				iterDatosAsegurados.remove();
+			}
+		}
+		Iterator<NestedDatosAseguradoDTO> iterDtoDatosAsegurados = this
+				.getDatosAsegurados().iterator();
+		while (iterDtoDatosAsegurados.hasNext()) {
+			boolean found = false;
+			NestedDatosAseguradoDTO dtoDatosAsegurado = iterDtoDatosAsegurados
+					.next();
+			iterDatosAsegurados = entity.getDatosAsegurados().iterator();
+			while (iterDatosAsegurados.hasNext()) {
+				DatosAsegurado datosAsegurado = iterDatosAsegurados.next();
+				if (((Long) dtoDatosAsegurado.getValorizacionId())
+						.equals((Long) datosAsegurado.getValorizacionId())) {
+					found = true;
+					break;
+				}
+			}
+			if (found == false) {
+				Iterator<DatosAsegurado> resultIter = em
+						.createQuery("SELECT DISTINCT d FROM DatosAsegurado d",
+								DatosAsegurado.class).getResultList()
+						.iterator();
+				while (resultIter.hasNext()) {
+					DatosAsegurado result = resultIter.next();
+					if (((Long) result.getValorizacionId())
+							.equals((Long) dtoDatosAsegurado
+									.getValorizacionId())) {
+						entity.getDatosAsegurados().add(result);
+						break;
+					}
+				}
+			}
+		}
+		entity = em.merge(entity);
+		return entity;
+	}
+
+	public int getCodigo() {
+		return this.codigo;
+	}
+
+	public void setCodigo(final int codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	public void setNombre(final String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Set<NestedDatosAseguradoDTO> getDatosAsegurados() {
+		return this.datosAsegurados;
+	}
+
+	public void setDatosAsegurados(
+			final Set<NestedDatosAseguradoDTO> datosAsegurados) {
+		this.datosAsegurados = datosAsegurados;
+	}
+}

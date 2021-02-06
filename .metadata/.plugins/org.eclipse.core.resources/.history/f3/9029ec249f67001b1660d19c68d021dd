@@ -1,0 +1,59 @@
+<header ng-switch on="$location.path().indexOf('/DatosAsegurados/new') > -1">
+    <h3 ng-switch-when="true">Create a new DatosAsegurado</h3>
+    <h3 ng-switch-when="false">View or edit DatosAsegurado</h3>
+</header>
+<form id="DatosAseguradoForm" name="DatosAseguradoForm" class="form-horizontal" role="form">
+                        <nav class="sidebar-nav" ng-controller="NavController" role="navigation">
+                        <div id="sidebar-entries" class="list-group">
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('DatosAsegurados')}" href="#/DatosAsegurados" data-toggle="offcanvas">DatosAsegurados</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('DatosVehiculos')}" href="#/DatosVehiculos" data-toggle="offcanvas">DatosVehiculos</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('EstadoValorizacions')}" href="#/EstadoValorizacions" data-toggle="offcanvas">EstadoValorizacions</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Marcas')}" href="#/Marcas" data-toggle="offcanvas">Marcas</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Modelos')}" href="#/Modelos" data-toggle="offcanvas">Modelos</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('ResultadoValorizacions')}" href="#/ResultadoValorizacions" data-toggle="offcanvas">ResultadoValorizacions</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Valorizacions')}" href="#/Valorizacions" data-toggle="offcanvas">Valorizacions</a>
+                        </div>
+                    </nav>
+    
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.rut.$invalid}">
+        <label for="rut" class="col-sm-2 control-label">Rut</label>
+        <div id="rutControls" class="col-sm-10">
+            <input id="rut" name="rut" type="number" class="form-control" ng-model="datosAsegurado.rut" placeholder="Enter the DatosAsegurado Rut"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.rut.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.nombre.$invalid}">
+        <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+        <div id="nombreControls" class="col-sm-10">
+            <input id="nombre" name="nombre" type="text" ng-maxlength="100" class="form-control" ng-model="datosAsegurado.nombre" placeholder="Enter the DatosAsegurado Nombre"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.nombre.$error.maxlength">maximum length is 100</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.fechaNacimiento.$invalid}">
+        <label for="fechaNacimiento" class="col-sm-2 control-label">Fecha Nacimiento</label>
+        <div id="fechaNacimientoControls" class="col-sm-10">
+            <date id="fechaNacimiento" name="fechaNacimiento" ng-model="datosAsegurado.fechaNacimiento" placeholder="Enter the DatosAsegurado Fecha Nacimiento"></date>
+            <span class="help-block error" ng-show="DatosAseguradoForm.fechaNacimiento.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="DatosAseguradoForm.fechaNacimiento.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.comuna.$invalid}">
+        <label for="comuna" class="col-sm-2 control-label">Comuna</label>
+        <div id="comunaControls" class="col-sm-10">
+            <input id="comuna" name="comuna" type="text" ng-maxlength="100" class="form-control" ng-model="datosAsegurado.comuna" placeholder="Enter the DatosAsegurado Comuna"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.comuna.$error.maxlength">maximum length is 100</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveDatosAsegurado" name="saveDatosAsegurado" class="btn btn-primary" ng-disabled="isClean() || DatosAseguradoForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteDatosAsegurado" name="deleteDatosAsegurado" class="btn btn-danger" ng-show="datosAsegurado.valorizacionId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

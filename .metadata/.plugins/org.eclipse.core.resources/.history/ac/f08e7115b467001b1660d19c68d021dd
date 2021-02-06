@@ -1,0 +1,4 @@
+angular.module('cotizador').factory('MarcaResource', function($resource){
+    var resource = $resource('rest/marcas/:MarcaId',{MarcaId:'@marcaId'},{'queryAll':{method:'GET',isArray:true},'query':{method:'GET',isArray:false},'update':{method:'PUT'}});
+    return resource;
+});

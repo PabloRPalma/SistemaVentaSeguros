@@ -1,0 +1,37 @@
+'use strict';
+
+angular.module('cotizador').factory('marcaService', ['$rootScope', function ($rootScope,MarcaResource) {
+    var marcas = [];
+    
+
+    $rootScope.$on('$routeChangeSuccess', function() {
+    	if (marcas.lenth==0){
+    		MarcaResource.queryAll(function(items) {
+    			this.marcas= items;
+    			alert(items.length)
+    		});
+    	}
+    	
+    	
+    });
+    
+    
+
+    return {
+      getMessage: function () {
+        return currentMessage;
+      },
+      setMessage: function(message, pop) {
+        switch(message.type) {
+            case "error" : message.cssClass = "danger"; break;
+            case "success" : message.cssClass = "success"; break;
+            case "info" : message.cssClass = "info"; break;
+            case "warning" : message.cssClass = "warning"; break;
+        }
+        messages.push(message);
+        if(pop) {
+          currentMessage = messages.shift() || {};
+        }
+      }
+    };
+}]);

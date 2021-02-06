@@ -1,0 +1,40 @@
+'use strict';
+
+angular.module('cotizador').factory('MarcaService', ['$rootScope', function ($rootScope,MarcaResource) {
+    var marcas = [];
+    
+
+    $rootScope.$on('$routeChangeSuccess', function(MarcaResource) {
+    	if (marcas.length==0){
+    		console.log("llamando al ws de marcas");
+    		MarcaResource.queryAll(function(items) {
+    			  $scope.marcaSelectionList = $.map(items, function(item) {
+                      var wrappedObject = {
+                          marcaId : item.marcaId
+                      };
+                      var labelObject = {
+                          value : item.marcaId,
+                          text : item.marcaId
+                      };
+                      if($scope.datosVehiculo.marca && item.marcaId == $scope.datosVehiculo.marca.marcaId) {
+                          $scope.marcaSelection = labelObject;
+                          $scope.datosVehiculo.marca = wrappedObject;
+                          self.original.marca = $scope.datosVehiculo.marca;
+                      }
+                      return labelObject;
+                  });
+    		});
+    	}
+    	
+    	
+    });
+    
+    
+
+    return {
+      getMarcas: function () {
+        return marcas;
+      }
+
+    };
+}]);

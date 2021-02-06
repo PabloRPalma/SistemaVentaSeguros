@@ -1,0 +1,71 @@
+'use strict';
+
+angular.module('cotizador',['ngRoute','ngResource'])
+
+  .config(['$routeProvider', function($routeProvider) {
+    $routeProvider
+     
+    .when('/',{templateUrl:'views/landing.html',controller:'LandingPageController'})
+    
+    .when('/DatosAsegurados',{templateUrl:'views/DatosAsegurado/search.html',controller:'SearchDatosAseguradoController'})
+      .when('/DatosAsegurados/new',{templateUrl:'views/DatosAsegurado/detail.html',controller:'EditDatosAseguradoController'})
+      .when('/DatosAsegurados/edit/:DatosAseguradoId',{templateUrl:'views/DatosAsegurado/detail.html',controller:'EditDatosAseguradoController'})
+      .when('/DatosVehiculos',{templateUrl:'views/DatosVehiculo/search.html',controller:'EditDatosVehiculoController'})
+      .when('/DatosVehiculos/new',{templateUrl:'views/DatosVehiculo/detail.html',controller:'EditDatosVehiculoController'})
+      .when('/DatosVehiculos/edit/:DatosVehiculoId',{templateUrl:'views/DatosVehiculo/detail.html',controller:'EditDatosVehiculoController'})
+      .when('/EstadoValorizacions',{templateUrl:'views/EstadoValorizacion/search.html',controller:'SearchEstadoValorizacionController'})
+      .when('/EstadoValorizacions/new',{templateUrl:'views/EstadoValorizacion/detail.html',controller:'NewEstadoValorizacionController'})
+      .when('/EstadoValorizacions/edit/:EstadoValorizacionId',{templateUrl:'views/EstadoValorizacion/detail.html',controller:'EditEstadoValorizacionController'})
+      .when('/Marcas',{templateUrl:'views/Marca/search.html',controller:'SearchMarcaController'})
+      .when('/Marcas/new',{templateUrl:'views/Marca/detail.html',controller:'NewMarcaController'})
+      .when('/Marcas/edit/:MarcaId',{templateUrl:'views/Marca/detail.html',controller:'EditMarcaController'})
+      .when('/Modelos',{templateUrl:'views/Modelo/search.html',controller:'SearchModeloController'})
+      .when('/Modelos/new',{templateUrl:'views/Modelo/detail.html',controller:'NewModeloController'})
+      .when('/Modelos/edit/:ModeloId',{templateUrl:'views/Modelo/detail.html',controller:'EditModeloController'})
+      .when('/ResultadoValorizacions',{templateUrl:'views/ResultadoValorizacion/search.html',controller:'SearchResultadoValorizacionController'})
+      .when('/ResultadoValorizacions/new',{templateUrl:'views/ResultadoValorizacion/detail.html',controller:'NewResultadoValorizacionController'})
+      .when('/ResultadoValorizacions/edit/:ResultadoValorizacionId',{templateUrl:'views/ResultadoValorizacion/detail.html',controller:'EditResultadoValorizacionController'})
+      .when('/Valorizacions',{templateUrl:'views/Valorizacion/search.html',controller:'SearchValorizacionController'})
+       .when('/Valorizacions/edit/:ValorizacionId',{templateUrl:'views/Valorizacion/detail.html',controller:'EditValorizacionController'})
+      .otherwise({
+        redirectTo: '/'
+      });
+  }])
+  .config(['$httpProvider', function($httpProvider) {
+    //initialize get if not there
+    if (!$httpProvider.defaults.headers.get) {
+        $httpProvider.defaults.headers.get = {};    
+    }    
+
+    // Answer edited to include suggestions from comments
+    // because previous version of code introduced browser-related errors
+
+    //disable IE ajax request caching
+    $httpProvider.defaults.headers.get['If-Modified-Since'] = 'Mon, 26 Jul 1997 05:00:00 GMT';
+    // extra
+    $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+    $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
+}])
+  .controller('LandingPageController', function LandingPageController() {
+  })
+  .controller('NavController', function NavController($scope, $location) {
+    $scope.matchesRoute = function(route) {
+        var path = $location.path();
+        return (path === ("/" + route) || path.indexOf("/" + route + "/") == 0);
+    };
+  }
+  
+  ).run(function(MarcaService, MarcaResource, ComunaResource) {
+	  // alert("start");
+	   MarcaResource.queryAll(function(items) {
+		
+		   MarcaService.setMarcas(items);
+	   });
+	   
+	   ComunaResource.queryAll(function(itemsComunas) {
+		 
+		   MarcaService.setComunas(itemsComunas);
+	   });
+	   
+	   //alert("dd");
+  });;

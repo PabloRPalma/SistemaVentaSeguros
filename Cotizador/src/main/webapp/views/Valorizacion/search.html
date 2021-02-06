@@ -1,0 +1,94 @@
+<div class="form-horizontal">
+    <h3>Create a new Valorizacion</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/Valorizacions/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for Valorizacions</h3>
+    <form id="ValorizacionSearch" class="form-horizontal">
+        
+    <div class="form-group">
+        <label for="estadoValorizacion" class="col-sm-2 control-label">Estado Valorizacion</label>
+        <div class="col-sm-10">
+            <select id="estadoValorizacion" name="estadoValorizacion" class="form-control" ng-model="search.estadoValorizacion" ng-options="e as e.estadoValorizacionId for e in estadoValorizacionList">
+                <option value="">Choose a Estado Valorizacion</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="usuarioId" class="col-sm-2 control-label">Usuario Id</label>
+        <div class="col-sm-10">
+            <input id="usuarioId" name="usuarioId" class="form-control" type="text" ng-model="search.usuarioId" placeholder="Enter the Valorizacion Usuario Id"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="rut" class="col-sm-2 control-label">Rut</label>
+        <div class="col-sm-10">
+            <input id="rut" name="rut" class="form-control" type="text" ng-model="search.rut" placeholder="Enter the Valorizacion Rut"></input>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="clienteNuevo" class="col-sm-2 control-label">Cliente Nuevo</label>
+        <div class="col-sm-10">
+            <select id="clienteNuevo" name="clienteNuevo" class="form-control" ng-model="search.clienteNuevo" ng-options="c as c for c in clienteNuevoList">
+                <option value="">Choose a Cliente Nuevo</option>
+            </select>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Estado Valorizacion</th>
+                    <th>Usuario Id</th>
+                    <th>Rut</th>
+                    <th>Fecha</th>
+                    <th>Fecha Hora</th>
+                    <th>Cliente Nuevo</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                        <td><a href="#/Valorizacions/edit/{{result.valorizacionId}}">{{result.estadoValorizacion.estadoValorizacionId}}</a></td>
+                    <td><a href="#/Valorizacions/edit/{{result.valorizacionId}}">{{result.usuarioId}}</a></td>
+                    <td><a href="#/Valorizacions/edit/{{result.valorizacionId}}">{{result.rut}}</a></td>
+                    <td><a href="#/Valorizacions/edit/{{result.valorizacionId}}">{{result.fecha| date:'mediumDate'}}</a></td>
+                    <td><a href="#/Valorizacions/edit/{{result.valorizacionId}}">{{result.fechaHora| date:'yyyy-MM-dd HH:mm:ss Z'}}</a></td>
+                    <td><a href="#/Valorizacions/edit/{{result.valorizacionId}}">{{result.clienteNuevo}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

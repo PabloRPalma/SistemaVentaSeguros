@@ -1,0 +1,19 @@
+'use strict';
+
+angular.module('cotizador').factory('marcaService' , function () {
+    var marcas = [];
+    
+
+  
+    
+    
+
+    return {
+      getMarcas: function () {
+        return marcas;
+      },
+      setMarcas: function(m) {
+    	  marcas= m;
+      }
+    };
+});

@@ -1,0 +1,49 @@
+<header ng-switch on="$location.path().indexOf('/Modelos/new') > -1">
+    <h3 ng-switch-when="true">Create a new Modelo</h3>
+    <h3 ng-switch-when="false">View or edit Modelo</h3>
+</header>
+<form id="ModeloForm" name="ModeloForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': ModeloForm.marca.$invalid}">
+        <label for="marca" class="col-sm-2 control-label">Marca</label>
+        <div id="marcaControls" class="col-sm-10">
+        <select id="marca" name="marca" class="form-control" ng-model="marcaSelection" ng-options="m.text for m in marcaSelectionList"  >
+            <option value="">Choose a Marca</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ModeloForm.descripcion.$invalid}">
+        <label for="descripcion" class="col-sm-2 control-label">Descripcion</label>
+        <div id="descripcionControls" class="col-sm-10">
+            <input id="descripcion" name="descripcion" type="text" ng-maxlength="100" class="form-control" ng-model="modelo.descripcion" placeholder="Enter the Modelo Descripcion"></input>
+            <span class="help-block error" ng-show="ModeloForm.descripcion.$error.maxlength">maximum length is 100</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ModeloForm.modeloId.$invalid}">
+        <label for="modeloId" class="col-sm-2 control-label">Modelo Id</label>
+        <div id="modeloIdControls" class="col-sm-10">
+            <input id="modeloId" name="modeloId" type="number" class="form-control" ng-model="modelo.modeloId" placeholder="Enter the Modelo Modelo Id"></input>
+            <span class="help-block error" ng-show="ModeloForm.modeloId.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ModeloForm.datosVehiculos.$invalid}">
+        <label for="datosVehiculos" class="col-sm-2 control-label">Datos Vehiculos</label>
+        <div id="datosVehiculosControls" class="col-sm-10">
+            <select id="datosVehiculos" name="datosVehiculos" multiple class="form-control" ng-model="datosVehiculosSelection" ng-options="d.text for d in datosVehiculosSelectionList">
+                <option value="">Choose a Datos Vehiculos</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveModelo" name="saveModelo" class="btn btn-primary" ng-disabled="isClean() || ModeloForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteModelo" name="deleteModelo" class="btn btn-danger" ng-show="modelo.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

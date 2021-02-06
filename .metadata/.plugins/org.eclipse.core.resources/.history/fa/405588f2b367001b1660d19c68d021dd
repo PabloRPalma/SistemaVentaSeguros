@@ -1,0 +1,83 @@
+package app.cotizador.rest.dto;
+
+import java.io.Serializable;
+import app.cotizador.model.Modelo;
+import javax.persistence.EntityManager;
+import app.cotizador.rest.dto.NestedMarcaDTO;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class ModeloDTO implements Serializable {
+
+	private Long id;
+	private NestedMarcaDTO marca;
+	private String descripcion;
+	private Integer modeloId;
+	private Integer marcaId;
+
+	public Integer getMarcaId() {
+		return marcaId;
+	}
+
+	public void setMarcaId(Integer marcaId) {
+		this.marcaId = marcaId;
+	}
+
+	public ModeloDTO() {
+	}
+
+	public ModeloDTO(final Modelo entity) {
+		if (entity != null) {
+			this.id = entity.getId();
+			this.marca = new NestedMarcaDTO(entity.getMarca());
+			this.descripcion = entity.getDescripcion();
+			this.modeloId = entity.getModeloId();
+			this.marcaId= entity.getMarca().getMarcaId();
+		}
+	}
+
+	public Modelo fromDTO(Modelo entity, EntityManager em) {
+		if (entity == null) {
+			entity = new Modelo();
+		}
+		if (this.marca != null) {
+			entity.setMarca(this.marca.fromDTO(entity.getMarca(), em));
+		}
+		entity.setDescripcion(this.descripcion);
+		entity.setModeloId(this.modeloId);
+		entity = em.merge(entity);
+		return entity;
+	}
+
+	public Long getId() {
+		return this.id;
+	}
+
+	public void setId(final Long id) {
+		this.id = id;
+	}
+
+	public NestedMarcaDTO getMarca() {
+		return this.marca;
+	}
+
+	public void setMarca(final NestedMarcaDTO marca) {
+		this.marca = marca;
+	}
+
+	public String getDescripcion() {
+		return this.descripcion;
+	}
+
+	public void setDescripcion(final String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Integer getModeloId() {
+		return this.modeloId;
+	}
+
+	public void setModeloId(final Integer modeloId) {
+		this.modeloId = modeloId;
+	}
+}

@@ -1,0 +1,165 @@
+<div class="form-horizontal">
+    <h3>Create a new ResultadoValorizacion</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/ResultadoValorizacions/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for ResultadoValorizacions</h3>
+    <form id="ResultadoValorizacionSearch" class="form-horizontal">
+        
+    <div class="form-group">
+        <label for="valorizacionId" class="col-sm-2 control-label">Valorizacion Id</label>
+        <div class="col-sm-10">
+            <input id="valorizacionId" name="valorizacionId" class="form-control" type="text" ng-model="search.valorizacionId" placeholder="Enter the ResultadoValorizacion Valorizacion Id"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="planId" class="col-sm-2 control-label">Plan Id</label>
+        <div class="col-sm-10">
+            <input id="planId" name="planId" class="form-control" type="text" ng-model="search.planId" placeholder="Enter the ResultadoValorizacion Plan Id"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="compania" class="col-sm-2 control-label">Compania</label>
+        <div class="col-sm-10">
+            <input id="compania" name="compania" class="form-control" type="text" ng-model="search.compania" placeholder="Enter the ResultadoValorizacion Compania"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="logo" class="col-sm-2 control-label">Logo</label>
+        <div class="col-sm-10">
+            <input id="logo" name="logo" class="form-control" type="text" ng-model="search.logo" placeholder="Enter the ResultadoValorizacion Logo"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="planDeCobertura" class="col-sm-2 control-label">Plan De Cobertura</label>
+        <div class="col-sm-10">
+            <input id="planDeCobertura" name="planDeCobertura" class="form-control" type="text" ng-model="search.planDeCobertura" placeholder="Enter the ResultadoValorizacion Plan De Cobertura"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="nemotecnico" class="col-sm-2 control-label">Nemotecnico</label>
+        <div class="col-sm-10">
+            <input id="nemotecnico" name="nemotecnico" class="form-control" type="text" ng-model="search.nemotecnico" placeholder="Enter the ResultadoValorizacion Nemotecnico"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="deducible" class="col-sm-2 control-label">Deducible</label>
+        <div class="col-sm-10">
+            <input id="deducible" name="deducible" class="form-control" type="text" ng-model="search.deducible" placeholder="Enter the ResultadoValorizacion Deducible"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="valor" class="col-sm-2 control-label">Valor</label>
+        <div class="col-sm-10">
+            <input id="valor" name="valor" class="form-control" type="text" ng-model="search.valor" placeholder="Enter the ResultadoValorizacion Valor"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="estado" class="col-sm-2 control-label">Estado</label>
+        <div class="col-sm-10">
+            <input id="estado" name="estado" class="form-control" type="text" ng-model="search.estado" placeholder="Enter the ResultadoValorizacion Estado"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="grupo" class="col-sm-2 control-label">Grupo</label>
+        <div class="col-sm-10">
+            <input id="grupo" name="grupo" class="form-control" type="text" ng-model="search.grupo" placeholder="Enter the ResultadoValorizacion Grupo"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="subgrupo" class="col-sm-2 control-label">Subgrupo</label>
+        <div class="col-sm-10">
+            <input id="subgrupo" name="subgrupo" class="form-control" type="text" ng-model="search.subgrupo" placeholder="Enter the ResultadoValorizacion Subgrupo"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="subgrupoAbrev" class="col-sm-2 control-label">Subgrupo Abrev</label>
+        <div class="col-sm-10">
+            <input id="subgrupoAbrev" name="subgrupoAbrev" class="form-control" type="text" ng-model="search.subgrupoAbrev" placeholder="Enter the ResultadoValorizacion Subgrupo Abrev"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="mensajeError" class="col-sm-2 control-label">Mensaje Error</label>
+        <div class="col-sm-10">
+            <input id="mensajeError" name="mensajeError" class="form-control" type="text" ng-model="search.mensajeError" placeholder="Enter the ResultadoValorizacion Mensaje Error"></input>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Valorizacion Id</th>
+                    <th>Plan Id</th>
+                    <th>Compania</th>
+                    <th>Logo</th>
+                    <th>Plan De Cobertura</th>
+                    <th>Nemotecnico</th>
+                    <th>Deducible</th>
+                    <th>Valor</th>
+                    <th>Estado</th>
+                    <th>Grupo</th>
+                    <th>Subgrupo</th>
+                    <th>Subgrupo Abrev</th>
+                    <th>Mensaje Error</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><a href="#/ResultadoValorizacions/edit/{{result.resultadoId}}">{{result.valorizacionId}}</a></td>
+                    <td><a href="#/ResultadoValorizacions/edit/{{result.resultadoId}}">{{result.planId}}</a></td>
+                    <td><a href="#/ResultadoValorizacions/edit/{{result.resultadoId}}">{{result.compania}}</a></td>
+                    <td><a href="#/ResultadoValorizacions/edit/{{result.resultadoId}}">{{result.logo}}</a></td>
+                    <td><a href="#/ResultadoValorizacions/edit/{{result.resultadoId}}">{{result.planDeCobertura}}</a></td>
+                    <td><a href="#/ResultadoValorizacions/edit/{{result.resultadoId}}">{{result.nemotecnico}}</a></td>
+                    <td><a href="#/ResultadoValorizacions/edit/{{result.resultadoId}}">{{result.deducible}}</a></td>
+                    <td><a href="#/ResultadoValorizacions/edit/{{result.resultadoId}}">{{result.valor}}</a></td>
+                    <td><a href="#/ResultadoValorizacions/edit/{{result.resultadoId}}">{{result.estado}}</a></td>
+                    <td><a href="#/ResultadoValorizacions/edit/{{result.resultadoId}}">{{result.grupo}}</a></td>
+                    <td><a href="#/ResultadoValorizacions/edit/{{result.resultadoId}}">{{result.subgrupo}}</a></td>
+                    <td><a href="#/ResultadoValorizacions/edit/{{result.resultadoId}}">{{result.subgrupoAbrev}}</a></td>
+                    <td><a href="#/ResultadoValorizacions/edit/{{result.resultadoId}}">{{result.mensajeError}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

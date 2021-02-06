@@ -1,0 +1,41 @@
+<header ng-switch on="$location.path().indexOf('/Marcas/new') > -1">
+    <h3 ng-switch-when="true">Create a new Marca</h3>
+    <h3 ng-switch-when="false">View or edit Marca</h3>
+</header>
+<form id="MarcaForm" name="MarcaForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': MarcaForm.descripcion.$invalid}">
+        <label for="descripcion" class="col-sm-2 control-label">Descripcion</label>
+        <div id="descripcionControls" class="col-sm-10">
+            <input id="descripcion" name="descripcion" type="text" ng-maxlength="100" class="form-control" ng-model="marca.descripcion" placeholder="Enter the Marca Descripcion"></input>
+            <span class="help-block error" ng-show="MarcaForm.descripcion.$error.maxlength">maximum length is 100</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': MarcaForm.modelos.$invalid}">
+        <label for="modelos" class="col-sm-2 control-label">Modelos</label>
+        <div id="modelosControls" class="col-sm-10">
+            <select id="modelos" name="modelos" multiple class="form-control" ng-model="modelosSelection" ng-options="m.text for m in modelosSelectionList">
+                <option value="">Choose a Modelos</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': MarcaForm.datosVehiculos.$invalid}">
+        <label for="datosVehiculos" class="col-sm-2 control-label">Datos Vehiculos</label>
+        <div id="datosVehiculosControls" class="col-sm-10">
+            <select id="datosVehiculos" name="datosVehiculos" multiple class="form-control" ng-model="datosVehiculosSelection" ng-options="d.text for d in datosVehiculosSelectionList">
+                <option value="">Choose a Datos Vehiculos</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveMarca" name="saveMarca" class="btn btn-primary" ng-disabled="isClean() || MarcaForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteMarca" name="deleteMarca" class="btn btn-danger" ng-show="marca.marcaId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

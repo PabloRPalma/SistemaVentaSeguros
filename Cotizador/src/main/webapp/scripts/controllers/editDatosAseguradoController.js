@@ -1,0 +1,90 @@
+
+
+angular.module('cotizador').controller('EditDatosAseguradoController', function($scope, $routeParams, $location, flash, DatosAseguradoResource , ComunaResource,MarcaService) {
+    var self = this;
+    $scope.disabled = false;
+    $scope.$location = $location;
+    
+    $scope.get = function() {
+        var successCallback = function(data){
+            self.original = data;
+            $scope.datosAsegurado = new DatosAseguradoResource(self.original);
+          	var items= MarcaService.getComunas();
+            $scope.comunaSelectionList = items;
+                $scope.comunaSelectionList = $.map(items, function(item) {
+                    var wrappedObject = {
+                        codigo : item.codigo
+                    };
+                    var labelObject = {
+                        value : item.codigo,
+                        text : item.nombre
+                    };
+                    if($scope.datosAsegurado.comuna && item.codigo == $scope.datosAsegurado.comuna.codigo) {
+                        $scope.comunaSelection = labelObject;
+                        $scope.datosAsegurado.comuna = wrappedObject;
+                        self.original.comuna = $scope.datosAsegurado.comuna;
+                    }
+                    return labelObject;
+                });
+           
+        };
+        var errorCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The datosAsegurado could not be found.'});
+            $location.path("/DatosAsegurados");
+        };
+        var id =localStorage.getItem('valorizacion');
+        DatosAseguradoResource.get({DatosAseguradoId:id}, successCallback, errorCallback);
+    };
+
+    $scope.isClean = function() {
+        return angular.equals(self.original, $scope.datosAsegurado);
+    };
+
+    $scope.save = function() {
+        var successCallback = function(){
+            flash.setMessage({'type':'success','text':'The datosAsegurado was updated successfully.'}, true);
+            $scope.get();
+            $location.path("/DatosVehiculos/edit/0");
+        };
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
+        };
+        $scope.datosAsegurado.$update(successCallback, errorCallback);
+    };
+
+    $scope.cancel = function() {
+        $location.path("/DatosAsegurados");
+    };
+
+    $scope.remove = function() {
+        var successCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The datosAsegurado was deleted.'});
+            $location.path("/DatosAsegurados");
+        };
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
+        }; 
+        $scope.datosAsegurado.$remove(successCallback, errorCallback);
+    };
+    
+    $scope.$watch("comunaSelection", function(selection) {
+        if (typeof selection != 'undefined') {
+            $scope.datosAsegurado.comuna = {};
+            $scope.datosAsegurado.comuna.codigo = selection.value;
+        }
+    });
+    $scope.contratanteEsMismoList = [
+        "true",
+        "false"
+    ];
+    
+    $scope.get();
+});

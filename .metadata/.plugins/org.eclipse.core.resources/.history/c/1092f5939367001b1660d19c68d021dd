@@ -1,0 +1,78 @@
+<div class="form-horizontal">
+    <h3>Create a new DatosAsegurado</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/DatosAsegurados/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for DatosAsegurados</h3>
+    <form id="DatosAseguradoSearch" class="form-horizontal">
+        
+    <div class="form-group">
+        <label for="rut" class="col-sm-2 control-label">Rut</label>
+        <div class="col-sm-10">
+            <input id="rut" name="rut" class="form-control" type="text" ng-model="search.rut" placeholder="Enter the DatosAsegurado Rut"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+        <div class="col-sm-10">
+            <input id="nombre" name="nombre" class="form-control" type="text" ng-model="search.nombre" placeholder="Enter the DatosAsegurado Nombre"></input>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="comuna" class="col-sm-2 control-label">Comuna</label>
+        <div class="col-sm-10">
+            <input id="comuna" name="comuna" class="form-control" type="text" ng-model="search.comuna" placeholder="Enter the DatosAsegurado Comuna"></input>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Rut</th>
+                    <th>Nombre</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Comuna</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><a href="#/DatosAsegurados/edit/{{result.valorizacionId}}">{{result.rut}}</a></td>
+                    <td><a href="#/DatosAsegurados/edit/{{result.valorizacionId}}">{{result.nombre}}</a></td>
+                    <td><a href="#/DatosAsegurados/edit/{{result.valorizacionId}}">{{result.fechaNacimiento| date:'mediumDate'}}</a></td>
+                    <td><a href="#/DatosAsegurados/edit/{{result.valorizacionId}}">{{result.comuna}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

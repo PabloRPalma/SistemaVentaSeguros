@@ -1,0 +1,65 @@
+<header ng-switch on="$location.path().indexOf('/Valorizacions/new') > -1">
+    <h3 ng-switch-when="true">Create a new Valorizacion</h3>
+    <h3 ng-switch-when="false">View or edit Valorizacion</h3>
+</header>
+<form id="ValorizacionForm" name="ValorizacionForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': ValorizacionForm.estadoValorizacion.$invalid}">
+        <label for="estadoValorizacion" class="col-sm-2 control-label">Estado Valorizacion</label>
+        <div id="estadoValorizacionControls" class="col-sm-10">
+        <select id="estadoValorizacion" name="estadoValorizacion" class="form-control" ng-model="estadoValorizacionSelection" ng-options="e.text for e in estadoValorizacionSelectionList"  >
+            <option value="">Choose a Estado Valorizacion</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ValorizacionForm.usuarioId.$invalid}">
+        <label for="usuarioId" class="col-sm-2 control-label">Usuario Id</label>
+        <div id="usuarioIdControls" class="col-sm-10">
+            <input id="usuarioId" name="usuarioId" type="number" class="form-control" ng-model="valorizacion.usuarioId" placeholder="Enter the Valorizacion Usuario Id"></input>
+            <span class="help-block error" ng-show="ValorizacionForm.usuarioId.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ValorizacionForm.rut.$invalid}">
+        <label for="rut" class="col-sm-2 control-label">Rut</label>
+        <div id="rutControls" class="col-sm-10">
+            <input id="rut" name="rut" type="number" class="form-control" ng-model="valorizacion.rut" placeholder="Enter the Valorizacion Rut"></input>
+            <span class="help-block error" ng-show="ValorizacionForm.rut.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ValorizacionForm.fecha.$invalid}">
+        <label for="fecha" class="col-sm-2 control-label">Fecha</label>
+        <div id="fechaControls" class="col-sm-10">
+            <date id="fecha" name="fecha" ng-model="valorizacion.fecha" placeholder="Enter the Valorizacion Fecha"></date>
+            <span class="help-block error" ng-show="ValorizacionForm.fecha.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="ValorizacionForm.fecha.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ValorizacionForm.fechaHora.$invalid}">
+        <label for="fechaHora" class="col-sm-2 control-label">Fecha Hora</label>
+        <div id="fechaHoraControls" class="col-sm-10">
+            <datetime id="fechaHora" name="fechaHora" ng-model="valorizacion.fechaHora" placeholder="Enter the Valorizacion Fecha Hora"></datetime>
+            <span class="help-block error" ng-show="ValorizacionForm.fechaHora.$error.maxlength">maximum length is 23</span>
+            <span class="help-block error" ng-show="ValorizacionForm.fechaHora.$error.datetimeFormat">does not match format "yyyy-MM-dd hh:mm:ss" (e.g. 2013-12-01 22:00:00)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ValorizacionForm.clienteNuevo.$invalid}">
+        <label for="clienteNuevo" class="col-sm-2 control-label">Cliente Nuevo</label>
+        <div id="clienteNuevoControls" class="col-sm-10">
+            <input id="clienteNuevo" name="clienteNuevo" type="checkbox" class="checkbox" ng-model="valorizacion.clienteNuevo" placeholder="Enter the Valorizacion Cliente Nuevo"></input>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveValorizacion" name="saveValorizacion" class="btn btn-primary" ng-disabled="isClean() || ValorizacionForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteValorizacion" name="deleteValorizacion" class="btn btn-danger" ng-show="valorizacion.valorizacionId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

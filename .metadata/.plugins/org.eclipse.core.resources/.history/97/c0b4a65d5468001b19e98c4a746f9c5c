@@ -1,0 +1,36 @@
+'use strict';
+
+angular.module('cotizador').factory('MarcaService', ['$rootScope', function ($scope,$rootScope,MarcaResource) {
+    var marcas = [];
+    
+
+    $rootScope.$on('$routeChangeSuccess', function(MarcaResource) {
+    	if (marcas.length==0){
+    		console.log("llamando al ws de marcas");
+    		MarcaResource.queryAll(function(items) {
+    			  var marcaSelectionList = $.map(items, function(item) {
+                      var wrappedObject = {
+                          marcaId : item.marcaId
+                      };
+                      var labelObject = {
+                          value : item.marcaId,
+                          text : item.marcaId
+                      };
+                    
+                      return labelObject;
+                  });
+    		});
+    	}
+    	
+    	
+    });
+    
+    
+
+    return {
+      getMarcas: function () {
+        return marcas;
+      }
+
+    };
+}]);

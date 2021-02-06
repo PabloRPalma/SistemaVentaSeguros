@@ -1,0 +1,125 @@
+<header ng-switch on="$location.path().indexOf('/ResultadoValorizacions/new') > -1">
+    <h3 ng-switch-when="true">Create a new ResultadoValorizacion</h3>
+    <h3 ng-switch-when="false">View or edit ResultadoValorizacion</h3>
+</header>
+<form id="ResultadoValorizacionForm" name="ResultadoValorizacionForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': ResultadoValorizacionForm.valorizacionId.$invalid}">
+        <label for="valorizacionId" class="col-sm-2 control-label">Valorizacion Id</label>
+        <div id="valorizacionIdControls" class="col-sm-10">
+            <input id="valorizacionId" name="valorizacionId" type="number" class="form-control" ng-model="resultadoValorizacion.valorizacionId" placeholder="Enter the ResultadoValorizacion Valorizacion Id"></input>
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.valorizacionId.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ResultadoValorizacionForm.planId.$invalid}">
+        <label for="planId" class="col-sm-2 control-label">Plan Id</label>
+        <div id="planIdControls" class="col-sm-10">
+            <input id="planId" name="planId" type="number" required class="form-control" ng-model="resultadoValorizacion.planId" placeholder="Enter the ResultadoValorizacion Plan Id"></input>
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.planId.$error.required">required</span> 
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.planId.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ResultadoValorizacionForm.compania.$invalid}">
+        <label for="compania" class="col-sm-2 control-label">Compania</label>
+        <div id="companiaControls" class="col-sm-10">
+            <input id="compania" name="compania" type="text" required ng-maxlength="100" class="form-control" ng-model="resultadoValorizacion.compania" placeholder="Enter the ResultadoValorizacion Compania"></input>
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.compania.$error.required">required</span> 
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.compania.$error.maxlength">maximum length is 100</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ResultadoValorizacionForm.logo.$invalid}">
+        <label for="logo" class="col-sm-2 control-label">Logo</label>
+        <div id="logoControls" class="col-sm-10">
+            <input id="logo" name="logo" type="text" ng-maxlength="100" class="form-control" ng-model="resultadoValorizacion.logo" placeholder="Enter the ResultadoValorizacion Logo"></input>
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.logo.$error.maxlength">maximum length is 100</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ResultadoValorizacionForm.planDeCobertura.$invalid}">
+        <label for="planDeCobertura" class="col-sm-2 control-label">Plan De Cobertura</label>
+        <div id="planDeCoberturaControls" class="col-sm-10">
+            <input id="planDeCobertura" name="planDeCobertura" type="text" required ng-maxlength="100" class="form-control" ng-model="resultadoValorizacion.planDeCobertura" placeholder="Enter the ResultadoValorizacion Plan De Cobertura"></input>
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.planDeCobertura.$error.required">required</span> 
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.planDeCobertura.$error.maxlength">maximum length is 100</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ResultadoValorizacionForm.nemotecnico.$invalid}">
+        <label for="nemotecnico" class="col-sm-2 control-label">Nemotecnico</label>
+        <div id="nemotecnicoControls" class="col-sm-10">
+            <input id="nemotecnico" name="nemotecnico" type="text" required ng-maxlength="6" class="form-control" ng-model="resultadoValorizacion.nemotecnico" placeholder="Enter the ResultadoValorizacion Nemotecnico"></input>
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.nemotecnico.$error.required">required</span> 
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.nemotecnico.$error.maxlength">maximum length is 6</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ResultadoValorizacionForm.deducible.$invalid}">
+        <label for="deducible" class="col-sm-2 control-label">Deducible</label>
+        <div id="deducibleControls" class="col-sm-10">
+            <input id="deducible" name="deducible" type="number" required class="form-control" ng-model="resultadoValorizacion.deducible" placeholder="Enter the ResultadoValorizacion Deducible"></input>
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.deducible.$error.required">required</span> 
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.deducible.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ResultadoValorizacionForm.valor.$invalid}">
+        <label for="valor" class="col-sm-2 control-label">Valor</label>
+        <div id="valorControls" class="col-sm-10">
+            <input id="valor" name="valor" type="text" required class="form-control" ng-model="resultadoValorizacion.valor" placeholder="Enter the ResultadoValorizacion Valor"></input>
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.valor.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ResultadoValorizacionForm.estado.$invalid}">
+        <label for="estado" class="col-sm-2 control-label">Estado</label>
+        <div id="estadoControls" class="col-sm-10">
+            <input id="estado" name="estado" type="number" required class="form-control" ng-model="resultadoValorizacion.estado" placeholder="Enter the ResultadoValorizacion Estado"></input>
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.estado.$error.required">required</span> 
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.estado.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ResultadoValorizacionForm.grupo.$invalid}">
+        <label for="grupo" class="col-sm-2 control-label">Grupo</label>
+        <div id="grupoControls" class="col-sm-10">
+            <input id="grupo" name="grupo" type="text" ng-maxlength="100" class="form-control" ng-model="resultadoValorizacion.grupo" placeholder="Enter the ResultadoValorizacion Grupo"></input>
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.grupo.$error.maxlength">maximum length is 100</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ResultadoValorizacionForm.subgrupo.$invalid}">
+        <label for="subgrupo" class="col-sm-2 control-label">Subgrupo</label>
+        <div id="subgrupoControls" class="col-sm-10">
+            <input id="subgrupo" name="subgrupo" type="text" ng-maxlength="100" class="form-control" ng-model="resultadoValorizacion.subgrupo" placeholder="Enter the ResultadoValorizacion Subgrupo"></input>
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.subgrupo.$error.maxlength">maximum length is 100</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ResultadoValorizacionForm.subgrupoAbrev.$invalid}">
+        <label for="subgrupoAbrev" class="col-sm-2 control-label">Subgrupo Abrev</label>
+        <div id="subgrupoAbrevControls" class="col-sm-10">
+            <input id="subgrupoAbrev" name="subgrupoAbrev" type="text" ng-maxlength="10" class="form-control" ng-model="resultadoValorizacion.subgrupoAbrev" placeholder="Enter the ResultadoValorizacion Subgrupo Abrev"></input>
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.subgrupoAbrev.$error.maxlength">maximum length is 10</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ResultadoValorizacionForm.mensajeError.$invalid}">
+        <label for="mensajeError" class="col-sm-2 control-label">Mensaje Error</label>
+        <div id="mensajeErrorControls" class="col-sm-10">
+            <input id="mensajeError" name="mensajeError" type="text" ng-maxlength="300" class="form-control" ng-model="resultadoValorizacion.mensajeError" placeholder="Enter the ResultadoValorizacion Mensaje Error"></input>
+            <span class="help-block error" ng-show="ResultadoValorizacionForm.mensajeError.$error.maxlength">maximum length is 300</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveResultadoValorizacion" name="saveResultadoValorizacion" class="btn btn-primary" ng-disabled="isClean() || ResultadoValorizacionForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteResultadoValorizacion" name="deleteResultadoValorizacion" class="btn btn-danger" ng-show="resultadoValorizacion.resultadoId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>
