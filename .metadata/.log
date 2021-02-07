@@ -886,3 +886,75 @@ java.lang.NullPointerException
 
 !ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2021-02-06 10:23:42.957
 !MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2021-02-06 15:51:58.038
+!MESSAGE Server processes have terminated prematurely. Please check your server logs for more details. 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2021-02-06 15:52:05.437
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2021-02-06 15:52:09.560
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2021-02-06 15:53:54.846
+!MESSAGE Server processes have terminated prematurely. Please check your server logs for more details. 
+
+!ENTRY tern.eclipse.ide.core 4 0 2021-02-06 15:55:20.276
+!MESSAGE TypeError: Cannot read property 'charCodeAt' of undefined
+!STACK 0
+tern.TernException: TypeError: Cannot read property 'charCodeAt' of undefined
+	at tern.server.TernExceptionFactory.create(TernExceptionFactory.java:27)
+	at tern.server.nodejs.NodejsTernHelper.makeRequest(NodejsTernHelper.java:94)
+	at tern.server.nodejs.NodejsTernServer.makeRequest(NodejsTernServer.java:238)
+	at tern.server.nodejs.NodejsTernServer.request(NodejsTernServer.java:204)
+	at tern.server.protocol.TernResultsProcessorsFactory.makeRequestAndProcess(TernResultsProcessorsFactory.java:45)
+	at tern.eclipse.ide.internal.core.resources.IDETernServerAsyncReqProcessor.run(IDETernServerAsyncReqProcessor.java:105)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY tern.eclipse.ide.core 4 0 2021-02-06 15:55:20.409
+!MESSAGE TypeError: Cannot read property 'charCodeAt' of undefined
+!STACK 0
+tern.TernException: TypeError: Cannot read property 'charCodeAt' of undefined
+	at tern.server.TernExceptionFactory.create(TernExceptionFactory.java:27)
+	at tern.server.nodejs.NodejsTernHelper.makeRequest(NodejsTernHelper.java:94)
+	at tern.server.nodejs.NodejsTernServer.makeRequest(NodejsTernServer.java:238)
+	at tern.server.nodejs.NodejsTernServer.request(NodejsTernServer.java:204)
+	at tern.server.protocol.TernResultsProcessorsFactory.makeRequestAndProcess(TernResultsProcessorsFactory.java:45)
+	at tern.eclipse.ide.internal.core.resources.IDETernServerAsyncReqProcessor.run(IDETernServerAsyncReqProcessor.java:105)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2021-02-06 15:56:39.673
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2021-02-06 15:56:43.324
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2021-02-06 16:05:46.495
+!MESSAGE Server processes have terminated prematurely. Please check your server logs for more details. 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2021-02-06 16:25:31.300
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2021-02-06 16:25:35.418
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2021-02-06 16:27:31.551
+!MESSAGE Server processes have terminated prematurely. Please check your server logs for more details. 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2021-02-06 16:40:46.600
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2021-02-06 16:40:51.141
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2021-02-07 14:36:13.589
+!MESSAGE Server processes have terminated prematurely. Please check your server logs for more details. 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2021-02-07 14:36:37.641
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2021-02-07 14:36:41.653
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.eclipse.wst.common.project.facet.ui 4 0 2021-02-07 16:18:44.623
+!MESSAGE Could not load icon "icons/obj16/new_webserv_wiz.gif" from plugin org.jboss.tools.ws.jaxws.ui.

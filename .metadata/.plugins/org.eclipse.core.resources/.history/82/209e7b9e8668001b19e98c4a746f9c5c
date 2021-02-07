@@ -1,0 +1,158 @@
+<header ng-switch on="$location.path().indexOf('/DatosAsegurados/new') > -1">
+    <h3 ng-switch-when="true">Create a new DatosAsegurado</h3>
+    <h3 ng-switch-when="false">View or edit DatosAsegurado</h3>
+</header>
+<form id="DatosAseguradoForm" name="DatosAseguradoForm" class="form-horizontal" role="form">
+    
+   
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.codigo.$invalid}">
+        <label for="codigo" class="col-sm-2 control-label">Codigo</label>
+        <div id="codigoControls" class="col-sm-10">
+            <input id="codigo" name="codigo" type="number" class="form-control" ng-model="datosAsegurado.codigo" placeholder="Enter the DatosAsegurado Codigo"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.codigo.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.rut.$invalid}">
+        <label for="rut" class="col-sm-2 control-label">Rut</label>
+        <div id="rutControls" class="col-sm-10">
+            <input id="rut" name="rut" type="number" class="form-control" ng-model="datosAsegurado.rut" placeholder="Enter the DatosAsegurado Rut"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.rut.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.rutDv.$invalid}">
+        <label for="rutDv" class="col-sm-2 control-label">Rut Dv</label>
+        <div id="rutDvControls" class="col-sm-10">
+            <input id="rutDv" name="rutDv" type="text" ng-maxlength="1" class="form-control" ng-model="datosAsegurado.rutDv" placeholder="Enter the DatosAsegurado Rut Dv"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.rutDv.$error.maxlength">maximum length is 1</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.nombres.$invalid}">
+        <label for="nombres" class="col-sm-2 control-label">Nombres</label>
+        <div id="nombresControls" class="col-sm-10">
+            <input id="nombres" name="nombres" type="text" ng-maxlength="50" class="form-control" ng-model="datosAsegurado.nombres" placeholder="Enter the DatosAsegurado Nombres"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.nombres.$error.maxlength">maximum length is 50</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.apellidoPaterno.$invalid}">
+        <label for="apellidoPaterno" class="col-sm-2 control-label">Apellido Paterno</label>
+        <div id="apellidoPaternoControls" class="col-sm-10">
+            <input id="apellidoPaterno" name="apellidoPaterno" type="text" ng-maxlength="50" class="form-control" ng-model="datosAsegurado.apellidoPaterno" placeholder="Enter the DatosAsegurado Apellido Paterno"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.apellidoPaterno.$error.maxlength">maximum length is 50</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.apellidoMaterno.$invalid}">
+        <label for="apellidoMaterno" class="col-sm-2 control-label">Apellido Materno</label>
+        <div id="apellidoMaternoControls" class="col-sm-10">
+            <input id="apellidoMaterno" name="apellidoMaterno" type="text" ng-maxlength="50" class="form-control" ng-model="datosAsegurado.apellidoMaterno" placeholder="Enter the DatosAsegurado Apellido Materno"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.apellidoMaterno.$error.maxlength">maximum length is 50</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.razonSocial.$invalid}">
+        <label for="razonSocial" class="col-sm-2 control-label">Razon Social</label>
+        <div id="razonSocialControls" class="col-sm-10">
+            <input id="razonSocial" name="razonSocial" type="text" ng-maxlength="160" class="form-control" ng-model="datosAsegurado.razonSocial" placeholder="Enter the DatosAsegurado Razon Social"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.razonSocial.$error.maxlength">maximum length is 160</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.fechaNacimiento.$invalid}">
+        <label for="fechaNacimiento" class="col-sm-2 control-label">Fecha Nacimiento</label>
+        <div id="fechaNacimientoControls" class="col-sm-10">
+            <date id="fechaNacimiento" name="fechaNacimiento" ng-model="datosAsegurado.fechaNacimiento" placeholder="Enter the DatosAsegurado Fecha Nacimiento"></date>
+            <span class="help-block error" ng-show="DatosAseguradoForm.fechaNacimiento.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="DatosAseguradoForm.fechaNacimiento.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.calle.$invalid}">
+        <label for="calle" class="col-sm-2 control-label">Calle</label>
+        <div id="calleControls" class="col-sm-10">
+            <input id="calle" name="calle" type="text" ng-maxlength="50" class="form-control" ng-model="datosAsegurado.calle" placeholder="Enter the DatosAsegurado Calle"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.calle.$error.maxlength">maximum length is 50</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.numero.$invalid}">
+        <label for="numero" class="col-sm-2 control-label">Numero</label>
+        <div id="numeroControls" class="col-sm-10">
+            <input id="numero" name="numero" type="text" ng-maxlength="6" class="form-control" ng-model="datosAsegurado.numero" placeholder="Enter the DatosAsegurado Numero"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.numero.$error.maxlength">maximum length is 6</span>
+        </div>
+    </div>
+	<div class="form-group" ng-class="{'has-error': DatosAseguradoForm.comuna.$invalid}">
+	        <label for="comuna" class="col-sm-2 control-label">Comuna</label>
+	        <div id="comunaControls" class="col-sm-10">
+	        <select id="comuna" name="comuna" class="form-control" ng-model="comunaSelection" ng-options="c.text for c in comunaSelectionList"  >
+	            <option value="">Choose a Comuna</option>
+	        </select>
+	        </div>
+	    </div>
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.sexo.$invalid}">
+        <label for="sexo" class="col-sm-2 control-label">Sexo</label>
+        <div id="sexoControls" class="col-sm-10">
+            <input id="sexo" name="sexo" type="text" ng-maxlength="1" class="form-control" ng-model="datosAsegurado.sexo" placeholder="Enter the DatosAsegurado Sexo"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.sexo.$error.maxlength">maximum length is 1</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.telefonoFijoArea.$invalid}">
+        <label for="telefonoFijoArea" class="col-sm-2 control-label">Telefono Fijo Area</label>
+        <div id="telefonoFijoAreaControls" class="col-sm-10">
+            <input id="telefonoFijoArea" name="telefonoFijoArea" type="text" ng-maxlength="1" class="form-control" ng-model="datosAsegurado.telefonoFijoArea" placeholder="Enter the DatosAsegurado Telefono Fijo Area"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.telefonoFijoArea.$error.maxlength">maximum length is 1</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.telefonoFijo.$invalid}">
+        <label for="telefonoFijo" class="col-sm-2 control-label">Telefono Fijo</label>
+        <div id="telefonoFijoControls" class="col-sm-10">
+            <input id="telefonoFijo" name="telefonoFijo" type="text" ng-maxlength="8" class="form-control" ng-model="datosAsegurado.telefonoFijo" placeholder="Enter the DatosAsegurado Telefono Fijo"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.telefonoFijo.$error.maxlength">maximum length is 8</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.celularArea.$invalid}">
+        <label for="celularArea" class="col-sm-2 control-label">Celular Area</label>
+        <div id="celularAreaControls" class="col-sm-10">
+            <input id="celularArea" name="celularArea" type="text" ng-maxlength="1" class="form-control" ng-model="datosAsegurado.celularArea" placeholder="Enter the DatosAsegurado Celular Area"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.celularArea.$error.maxlength">maximum length is 1</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.celular.$invalid}">
+        <label for="celular" class="col-sm-2 control-label">Celular</label>
+        <div id="celularControls" class="col-sm-10">
+            <input id="celular" name="celular" type="text" ng-maxlength="9" class="form-control" ng-model="datosAsegurado.celular" placeholder="Enter the DatosAsegurado Celular"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.celular.$error.maxlength">maximum length is 9</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.email.$invalid}">
+        <label for="email" class="col-sm-2 control-label">Email</label>
+        <div id="emailControls" class="col-sm-10">
+            <input id="email" name="email" type="text" ng-maxlength="80" class="form-control" ng-model="datosAsegurado.email" placeholder="Enter the DatosAsegurado Email"></input>
+            <span class="help-block error" ng-show="DatosAseguradoForm.email.$error.maxlength">maximum length is 80</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosAseguradoForm.contratanteEsMismo.$invalid}">
+        <label for="contratanteEsMismo" class="col-sm-2 control-label">Contratante Es Mismo</label>
+        <div id="contratanteEsMismoControls" class="col-sm-10">
+            <input id="contratanteEsMismo" name="contratanteEsMismo" type="checkbox" class="checkbox" ng-model="datosAsegurado.contratanteEsMismo" placeholder="Enter the DatosAsegurado Contratante Es Mismo"></input>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveDatosAsegurado" name="saveDatosAsegurado" class="btn btn-primary" ng-disabled="isClean() || DatosAseguradoForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteDatosAsegurado" name="deleteDatosAsegurado" class="btn btn-danger" ng-show="datosAsegurado.valorizacionId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

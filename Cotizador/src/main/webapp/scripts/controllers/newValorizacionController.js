@@ -24,8 +24,40 @@ angular.module('cotizador').controller('NewValorizacionController', function ($s
         "false"
     ];
 
+    $scope.buscarRut= function(){
+     	//alert($scope.valorizacion.rut);
+     	
+    	var successCallback = function(data,responseHeaders){
+              var id = locationParser(responseHeaders);
+              flash.setMessage({'type':'success','text':'The valorizacion was created successfully.'});
+              localStorage.setItem('valorizacion', id);
+              $location.path('/DatosAsegurados/edit/0');
+          };
+          var errorCallback = function(response) {
+              if(response && response.data) {
+                  flash.setMessage({'type': 'error', 'text': response.data.message || response.data}, true);
+              } else {
+                  flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+              }
+          };
+          if ($scope.valorizacion.rut!= null){
+        	  ValorizacionResource.save($scope.valorizacion, successCallback, errorCallback);
+          }else{
+        	  $scope.valorizacion.rut=null;
+        	  document.getElementById('rut').value="";
+        	  document.getElementById('rut').focus();
+          }
+          
+     
+ }
+    
+    $scope.$on('$viewContentLoaded', function(){
+        // Set a flag
+    	  document.getElementById('rut').focus();
+      });
 
     $scope.save = function() {
+   
         var successCallback = function(data,responseHeaders){
             var id = locationParser(responseHeaders);
             flash.setMessage({'type':'success','text':'The valorizacion was created successfully.'});

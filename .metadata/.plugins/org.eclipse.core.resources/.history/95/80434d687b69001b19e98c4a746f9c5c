@@ -1,0 +1,24 @@
+<header ng-switch on="$location.path().indexOf('/Valorizacions/new') > -1">
+    <h3 ng-switch-when="true">Ingrese el RUT</h3>
+    <h3 ng-switch-when="false">View or edit Valorizacion</h3>
+</header>
+<form id="ValorizacionForm" name="ValorizacionForm" class="form-horizontal" role="form">
+    
+
+
+    <div class="form-group" ng-class="{'has-error': ValorizacionForm.rut.$invalid}">
+        <label for="rut" class="col-sm-2 control-label">Rut</label>
+        <div id="rutControls" class="col-sm-10">
+            <input class="form-control"   ng-rut rut-format="live"   ng-keyup="$event.keyCode == 13 && buscarRut()" ng-blur="buscarRut()" type="text" id="rut" name="rut" sclass="form-control" ng-model="valorizacion.rut" placeholder="Enter the Valorizacion Rut"></input>
+            <span class="help-block error" ng-show="ValorizacionForm.rut.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+           
+           
+        </div>
+    </div>
+</form>

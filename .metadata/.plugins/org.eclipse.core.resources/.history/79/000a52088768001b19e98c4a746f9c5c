@@ -1,0 +1,72 @@
+
+<div id="page-wrapper">        
+    <div class=" ng-include="'views/common/Page2.html'" ng-controller="PagesecondController"></div>
+    <!-- /#page-wrapper -->
+    <div id="page-content-wrapper" ui-view></div>
+</div>
+
+<header ng-switch on="$location.path().indexOf('/DatosVehiculos/new') > -1">
+    <h3 ng-switch-when="true">Create a new DatosVehiculo</h3>
+    <h3 ng-switch-when="false">View or edit DatosVehiculo</h3>
+</header>
+<form id="DatosVehiculoForm" name="DatosVehiculoForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': DatosVehiculoForm.marca.$invalid}">
+        <label for="marca" class="col-sm-2 control-label">Marca</label>
+        <div id="marcaControls" class="col-sm-10">
+        <select id="marca" name="marca" class="form-control" ng-model="marcaSelection" ng-options="m.descripcion for m in marcaSelectionList"  >
+            <option value="">Choose a Marca</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosVehiculoForm.modelo.$invalid}">
+        <label for="modelo" class="col-sm-2 control-label">Modelo</label>
+        <div id="modeloControls" class="col-sm-10">
+        <select id="modelo" name="modelo" class="form-control" ng-model="modeloSelection" ng-options="m.descripcion for m in modeloSelectionList"  >
+            <option value="">Choose a Modelo</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosVehiculoForm.ano.$invalid}">
+        <label for="ano" class="col-sm-2 control-label">Ano</label>
+        <div id="anoControls" class="col-sm-10">
+            <input id="ano" name="ano" type="number" class="form-control" ng-model="datosVehiculo.ano" placeholder="Enter the DatosVehiculo Ano"></input>
+            <span class="help-block error" ng-show="DatosVehiculoForm.ano.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosVehiculoForm.estado.$invalid}">
+        <label for="estado" class="col-sm-2 control-label">Estado</label>
+        <div id="estadoControls" class="col-sm-10">
+            <input id="estado" name="estado" type="text" ng-maxlength="1" class="form-control" ng-model="datosVehiculo.estado" placeholder="Enter the DatosVehiculo Estado"></input>
+            <span class="help-block error" ng-show="DatosVehiculoForm.estado.$error.maxlength">maximum length is 1</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosVehiculoForm.uso.$invalid}">
+        <label for="uso" class="col-sm-2 control-label">Uso</label>
+        <div id="usoControls" class="col-sm-10">
+            <input id="uso" name="uso" type="text" ng-maxlength="1" class="form-control" ng-model="datosVehiculo.uso" placeholder="Enter the DatosVehiculo Uso"></input>
+            <span class="help-block error" ng-show="DatosVehiculoForm.uso.$error.maxlength">maximum length is 1</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DatosVehiculoForm.modeloId.$invalid}">
+        <label for="modeloId" class="col-sm-2 control-label">Modelo Id</label>
+        <div id="modeloIdControls" class="col-sm-10">
+            <input id="modeloId" name="modeloId" type="number" class="form-control" ng-model="datosVehiculo.modeloId" placeholder="Enter the DatosVehiculo Modelo Id"></input>
+            <span class="help-block error" ng-show="DatosVehiculoForm.modeloId.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveDatosVehiculo" name="saveDatosVehiculo" class="btn btn-primary" ng-disabled="isClean() || DatosVehiculoForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteDatosVehiculo" name="deleteDatosVehiculo" class="btn btn-danger" ng-show="datosVehiculo.valorizacionId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

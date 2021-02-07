@@ -11,8 +11,7 @@ angular.module('cotizador').controller('EditDatosVehiculoController', function($
             $scope.datosVehiculo = new DatosVehiculoResource(self.original);
             	var items= MarcaService.getMarcas();
                 $scope.marcaSelectionList = items;
-                console.log(items)
-           
+     
          
         };
         var errorCallback = function() {

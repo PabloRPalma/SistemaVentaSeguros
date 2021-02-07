@@ -1,0 +1,32 @@
+<header ng-switch on="$location.path().indexOf('/Valorizacions/new') > -1">
+    <h3 ng-switch-when="true">Ingrese el RUT</h3>
+    <h3 ng-switch-when="false">View or edit Valorizacion</h3>
+</header>
+<form id="ValorizacionForm" name="ValorizacionForm" class="form-horizontal" role="form">
+    
+
+
+    <div class="form-group" ng-class="{'has-error': ValorizacionForm.rut.$invalid}">
+        <label for="rut" class="col-sm-2 control-label">Rut</label>
+        <div id="rutControls" class="col-sm-10">
+            <input rut-format="live"  ng-blur="rut.$invalid & buscarRut()" type="text" id="rut" name="rut" class="form-control" ng-model="valorizacion.rut" placeholder="Enter the Valorizacion Rut"></input>
+            <span class="help-block error" ng-show="ValorizacionForm.rut.$error.number">not a number</span>
+        </div>
+    </div>
+
+ <div class="form-group" ng-class="{'has-error': ValorizacionForm.rut.$invalid}">
+        <label for="rut3" class="col-sm-2 control-label">Rut</label>
+        <div id="rutControls" class="col-sm-10">
+            <input  ng-rut rut-format="live"  ng-change="buscarRut()" type="text" id="rut3" name="rut3" class="form-control" ng-model="valorizacion.rut" placeholder="Enter the Valorizacion Rut"></input>
+            <span class="help-block error" ng-show="ValorizacionForm.rut.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveValorizacion" name="saveValorizacion" class="btn btn-primary" ng-disabled="isClean() || ValorizacionForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Sigue</button>
+           
+           
+        </div>
+    </div>
+</form>

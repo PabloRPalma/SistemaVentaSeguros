@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('cotizador',['ngRoute','ngResource'])
+angular.module('cotizador',['ngRoute','ngResource','platanus.rut'])
 
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -11,16 +11,7 @@ angular.module('cotizador',['ngRoute','ngResource'])
       .when('/DatosVehiculos',{templateUrl:'views/DatosVehiculo/detail.html',controller:'EditDatosVehiculoController'})
       .when('/DatosVehiculos/new',{templateUrl:'views/DatosVehiculo/detail.html',controller:'NewDatosVehiculoController'})
       .when('/DatosVehiculos/edit/:DatosVehiculoId',{templateUrl:'views/DatosVehiculo/detail.html',controller:'EditDatosVehiculoController'})
-      .when('/EstadoValorizacions',{templateUrl:'views/EstadoValorizacion/search.html',controller:'SearchEstadoValorizacionController'})
-      .when('/EstadoValorizacions/new',{templateUrl:'views/EstadoValorizacion/detail.html',controller:'NewEstadoValorizacionController'})
-      .when('/EstadoValorizacions/edit/:EstadoValorizacionId',{templateUrl:'views/EstadoValorizacion/detail.html',controller:'EditEstadoValorizacionController'})
-      .when('/Marcas',{templateUrl:'views/Marca/search.html',controller:'SearchMarcaController'})
-      .when('/Marcas/new',{templateUrl:'views/Marca/detail.html',controller:'NewMarcaController'})
-      .when('/Marcas/edit/:MarcaId',{templateUrl:'views/Marca/detail.html',controller:'EditMarcaController'})
-      .when('/Modelos',{templateUrl:'views/Modelo/search.html',controller:'SearchModeloController'})
-      .when('/Modelos/new',{templateUrl:'views/Modelo/detail.html',controller:'NewModeloController'})
-      .when('/Modelos/edit/:ModeloId',{templateUrl:'views/Modelo/detail.html',controller:'EditModeloController'})
-      .when('/ResultadoValorizacions',{templateUrl:'views/ResultadoValorizacion/search.html',controller:'SearchResultadoValorizacionController'})
+       .when('/ResultadoValorizacions',{templateUrl:'views/ResultadoValorizacion/search.html',controller:'SearchResultadoValorizacionController'})
       .when('/ResultadoValorizacions/new',{templateUrl:'views/ResultadoValorizacion/detail.html',controller:'NewResultadoValorizacionController'})
       .when('/ResultadoValorizacions/edit/:ResultadoValorizacionId',{templateUrl:'views/ResultadoValorizacion/detail.html',controller:'EditResultadoValorizacionController'})
       .when('/Valorizacions',{templateUrl:'views/Valorizacion/search.html',controller:'SearchValorizacionController'})
